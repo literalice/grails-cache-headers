@@ -6,14 +6,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 import grails.test.*
 
-class CacheMethodsTests extends GrailsUnitTestCase {
-    protected void setUp() {
-        super.setUp()
-    }
-
-    protected void tearDown() {
-        super.tearDown()
-    }
+class CacheMethodsTests extends GroovyTestCase {
 
     static RFC1123_DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz" // Always GMT
 
@@ -42,7 +35,7 @@ class CacheMethodsTests extends GrailsUnitTestCase {
         con.validUntilTest1()
         
         def d = con.request.getAttribute('test_validUntil')
-        assertEquals d.time, con.response.getHeader('Expires')
+        assertEquals d.time, con.response.getHeader('Expires').toLong()
     }
 
     void testValidFor() {
